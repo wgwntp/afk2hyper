@@ -9,7 +9,7 @@ UI_TYPE_LIST = [
     (cus_enum.PageType.FULL_CARD_DRAW,['心愿单']),
     (cus_enum.PageType.EPIC_CARD_DRAW,['自选英雄']),
     (cus_enum.PageType.STAR_ORIGIN_DRAW,['占卜十次']),
-    (cus_enum.PageType.CATEGORY,['挂机关卡','迷梦之域','公会狩魔']),
+    (cus_enum.PageType.CATEGORY,['挂机关卡','迷梦之域','竞技场']),
     (cus_enum.PageType.HERO_HALL,['共鸣骑士','共鸣之手']),
     (cus_enum.PageType.CLUB,['公会挑战']),
     (cus_enum.PageType.MAIN_PAGE,['神秘屋','玩法目录','英雄厅堂','公会']),

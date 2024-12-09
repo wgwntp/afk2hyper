@@ -22,12 +22,19 @@ MAIN_PAGE_SETP = [
 ]
 
 def get_step_button_names(steps,current_page_type):
+    button_names = []
     steps.extend(config.COMMON_STEP)
-    return steps[current_page_type]
+    for s in MAIN_PAGE_SETP:
+        if current_page_type == s[0]:
+            button_names = s[1]
+            break
+    return button_names
 
 def step_1(hwnd):
+    print("begin")
     target_page_types = [ce.PageType.MAIN_PAGE,ce.PageType.IDLE_PAGE,ce.PageType.READY_FIGHT_PAGE]
     current_page_type,ocr = utils.get_current_page_type(hwnd)
+    print("current_page_type",current_page_type)
     if current_page_type in target_page_types:
         return True
     

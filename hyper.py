@@ -37,7 +37,7 @@ def execute_step(hwnd,step):
         # 如果停止，退出循环
         if turbo_stop:
             break
-        
+        print("try to run step")
         if not step(hwnd):
             time.sleep(1)
             continue    
