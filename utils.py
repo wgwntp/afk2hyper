@@ -203,7 +203,31 @@ def matchOneTemplate(hwnd,temp_path,ratio_w,ratio_h):
         return x+left,y+top
     else :
         return 0,0
-    
+
+def get_current_page_type(hwnd):
+    current_page_type = cus_enum.PageType.UNKNOWN_PAGE
+    #截图
+    imagePath,w,h,_,_ = window_screenshot(hwnd)
+    #识别图片内容
+    ocr_result = config.READER.readtext(imagePath)
+    os.remove(imagePath)
+    all_text = []
+    for item in ocr_result:
+        trimText = item[1].replace(" ","")
+        all_text.append(trimText)
+    for uii in config.UI_TYPE_LIST:
+        if uii[1][0].lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif')):
+            # 60,60 60/1155=0.05, 60/2093=0.028
+            x,y = matchOneTemplate(hwnd,uii[1][0],0.05,0.028)
+            if x != 0 or y != 0:
+                current_page_type = uii[0]
+                break
+        else :
+            if is_subset(uii[1],all_text):
+                current_page_type = uii[0]
+                break
+        
+    return current_page_type,ocr_result   
 # def click_message(hwnd,x,y):
 #     lparam = win32api.MAKELONG(x,y)
 #     win32gui.SendMessage(hwnd,win32con.WM_LBUTTONDOWN,win32con.MK_LBUTTON,lparam)

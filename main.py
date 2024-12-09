@@ -20,6 +20,8 @@ import config
 import utils
 import log
 import page_test
+import hyper
+import idle_steps
 
 # 卡片模板路径  
 CARDS_PATH = './images/cards'
@@ -485,7 +487,8 @@ class DrawCardsThread(threading.Thread):
             log.logger.info("开史诗定向金抽卡模式")
         elif draw_mode == cus_enum.DrawMode.IDLE_MODE:
             log.logger.info("开始自动挂机模式")
-            turbo.idle_mode(hwnd)
+            # turbo.idle_mode(hwnd)
+            hyper.hyper(hwnd,idle_steps.idle_mode_steps())
         else :
             log.logger.info("调整心愿单")
             draw_cards_mode()
