@@ -1,0 +1,30 @@
+import cus_enum as ce
+import config
+
+TO_MAIN_PAGE = [
+    [ce.PageType.CATEGORY,['./back2.png']],
+    [ce.PageType.HERO_HALL,['./back2.png']],
+    [ce.PageType.CLUB,['./back2.png']],
+    [ce.PageType.SHEN_MI_WU,['./back2.png']],
+    [ce.PageType.UP_DRAW,['./back2.png']],
+    [ce.PageType.FULL_CARD_DRAW,['./back2.png']],
+    [ce.PageType.EPIC_CARD_DRAW,['./back2.png']],
+    [ce.PageType.STAR_ORIGIN_DRAW,['./back2.png']],
+    [ce.PageType.DRAW_AGAIN_ONCE,['back.png']],
+    [ce.PageType.DRAW_AGAIN_TENTH,['back.png']],
+    [ce.PageType.IDLE_PAGE,['back.png']],
+    [ce.PageType.READY_FIGHT_PAGE,['back.png']],
+    [ce.PageType.PLAGIARIZE_PAGE,['点击空白处关闭']],
+    [ce.PageType.FIGHT_FAIL_PAGE,['继续挑战']],
+    [ce.PageType.FIGHT_SUCCESS_1_PAGE,['继续挑战']],
+    [ce.PageType.FIGHT_SUCCESS_2_PAGE,['back.png']], 
+]
+
+def get_route_button_names(routes,current_page_type):
+    button_names = []
+    routes.extend(config.COMMON_ROUTE)
+    for r in TO_MAIN_PAGE:
+        if current_page_type == r[0]:
+            button_names = r[1]
+            break
+    return button_names

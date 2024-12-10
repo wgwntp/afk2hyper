@@ -29,7 +29,7 @@ def hyper(hwnd,steps):
         time.sleep(0.5)
 
 # 执行步骤，如果没有成功，则多次尝试，10次未成功重新开始
-def execute_step(hwnd,step):
+def execute_step(hwnd_value,step):
     try_times = 10
     for i in range(try_times):
         # 如果暂停，停在当前步骤
@@ -37,8 +37,7 @@ def execute_step(hwnd,step):
         # 如果停止，退出循环
         if turbo_stop:
             break
-        print("try to run step")
-        if not step(hwnd):
+        if not step(hwnd=hwnd_value):
             time.sleep(1)
             continue    
         else:

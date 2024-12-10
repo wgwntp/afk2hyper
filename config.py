@@ -42,7 +42,7 @@ CARDS_PATH = './images/cards'
 IMAGES_PATH = './images/'
 GOLD_CARD_PATH = './images/cards/gold/'
 
-COMMON_STEP = [
+COMMON_ROUTE = [
     [cus_enum.PageType.START_PAGE,['点击开始游戏']],
     [cus_enum.PageType.PAUSE_PAGE,['点击屏幕恢复']],
     [cus_enum.PageType.OTHER_PAGE,['点击空白处关闭','点击空自处关闭']],
