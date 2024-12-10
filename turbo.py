@@ -159,7 +159,7 @@ def get_current_page_type(hwnd):
 # 跳转界面函数，从任一界面跳转到目标界面
 def toTargetPage(hwnd,step,target_page,cards_map=[],full_back_up_wish_list=[],epic_back_up_wish_list=[]):
     count = 0
-    step.extend(config.COMMON_STEP)
+    step.extend(config.COMMON_ROUTE)
     current_page_type,ocr_result = get_current_page_type(hwnd)
     while True:
         if turbo_paused:
@@ -776,10 +776,15 @@ def direct_draw_full_mode(hwnd,limit_times,limit_count,target_full_list=["3-y","
     
     full_color_count_map = {cus_enum.CardColor.GREEN:0,cus_enum.CardColor.BLUE:0,cus_enum.CardColor.PURPLE:0,cus_enum.CardColor.GOLD:0}
     
-    is_change_wish_list = False
-    
+    is_change_wish_list = True
+   
 
     cards_map = wish_list.get_card_map(config.GOLD_CARD_PATH)
+    if is_change_wish_list:
+        is_success =wish_list.full_list_run(hwnd,target_epic_list,target_full_list,cards_map)
+        if not is_success:
+            log.logger.info("普池模式，调整心愿单失败，重新开始")
+
     draw_count = 0
     while True:
         if turbo_paused:
@@ -846,14 +851,6 @@ def direct_draw_full_mode(hwnd,limit_times,limit_count,target_full_list=["3-y","
             if turbo_stop:
                 break
             
-            if is_change_wish_list:
-                print("调整心愿单金卡顺序")
-                is_success =wish_list.full_list_run(hwnd,target_epic_list,target_full_list,cards_map)
-                if not is_success:
-                    log.logger.info("普池模式，调整心愿单失败，重新开始")
-                    continue
-                is_change_wish_list = False
-            
              # 第三步普池抽卡
             if turbo_paused:
                 time.sleep(1)
@@ -890,7 +887,7 @@ def direct_draw_full_mode(hwnd,limit_times,limit_count,target_full_list=["3-y","
 
 def idle_mode(hwnd):
     failed_count = 0
-    current_plagiarize_number = 0
+    current_plagiarize_number = 2
     talent_fight = True
     success_count = 0
     # 当前挑战第几局
@@ -1037,7 +1034,7 @@ def idle_mode(hwnd):
             
             if current_page_type == cus_enum.PageType.FIGHT_SUCCESS_2_PAGE:
                 failed_count = 0
-                current_plagiarize_number = 0
+                current_plagiarize_number = 2
                 success_count += 1
                 game_number = 1
                 if not toTargetPage(hwnd,[[cus_enum.PageType.FIGHT_SUCCESS_2_PAGE,['天赋挑战','挑战']]],cus_enum.PageType.READY_FIGHT_PAGE):
@@ -1058,7 +1055,7 @@ def idle_mode(hwnd):
         elif current_page_type == cus_enum.PageType.FIGHT_SUCCESS_2_PAGE:
             print("战斗2结束",current_page_type)
             failed_count = 0
-            current_plagiarize_number = 0
+            current_plagiarize_number = 2
             success_count += 1
             game_number = 1
             if not toTargetPage(hwnd,[[cus_enum.PageType.FIGHT_SUCCESS_2_PAGE,['天赋挑战','挑战']]],cus_enum.PageType.READY_FIGHT_PAGE):
