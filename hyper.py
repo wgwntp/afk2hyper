@@ -1,52 +1,50 @@
-from datetime import datetime
-import cus_enum
-import config
 import time
-import utils
-import os
-import pyautogui
 import log
 
-turbo_paused = False
-turbo_stop = False
+paused = False
+stop = False
 
-def hyper(hwnd,steps):
+def hyper(hwnd,step,stop_work):
+    current_step = step
     while True:
-        for step in steps:
-            # 如果停止，退出循环
-            if turbo_stop:
-                break
-            # 执行步骤
-            if not execute_step(hwnd,step):
-                log.logger.info("步骤失败，重新开始")
-                break
-            # 步骤执行成功，继续下一步
-            
+        # 执行步骤
+        is_success,next_step = execute_step(hwnd,current_step)
+        time.sleep(0.8)
         # 如果停止，退出循环
-        if turbo_stop:
+        if stop:
+            stop_work()
             log.logger.info("停止退出")
             break
-        time.sleep(0.5)
+        
+        if not is_success:
+            # 如果失败从第一步开始
+            current_step = step
+            continue
+        # 步骤执行成功，继续下一步
+        current_step = next_step
+        
 
 # 执行步骤，如果没有成功，则多次尝试，10次未成功重新开始
 def execute_step(hwnd_value,step):
     try_times = 10
     for i in range(try_times):
         # 如果暂停，停在当前步骤
-        paused(turbo_paused)
+        is_paused()
         # 如果停止，退出循环
-        if turbo_stop:
+        if stop:
             break
-        if not step(hwnd=hwnd_value):
+        # 执行当前步骤
+        is_success,next_step = step(hwnd=hwnd_value)
+        if not is_success:
             time.sleep(1)
             continue    
         else:
-            return True
-    return False
+            return True,next_step
+    return False,None
 
-def paused(turbo_paused):
+def is_paused():
     while True:
-        if turbo_paused:
+        if paused:
             time.sleep(0.1)
             continue
         break

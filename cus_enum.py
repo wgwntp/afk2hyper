@@ -5,7 +5,8 @@ class DrawMode(Enum):
     TURBO_DRAW_GD = '全联动模式-神魔'
     DIRECT_DRAW_FULL = '全英雄招募-定向金'
     DIRECT_DRAW_EPIC = '史诗招募-定向金'
-    IDLE_MODE = '自动挂机模式'
+    IDLE_MODE = '自动天赋挂机模式'
+    IDLE_MODE_2 = '自动普通挂机模式'
     
     # FULL_LIST_DRAW = '全英雄招募'
     # EPIC_CARD_DRAW = '史诗招募'

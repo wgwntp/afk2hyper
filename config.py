@@ -16,7 +16,7 @@ UI_TYPE_LIST = [
     (cus_enum.PageType.SECOND_PAGE,['月桂之旅','社区']),
     (cus_enum.PageType.DRAW_AGAIN_ONCE,['再招募一次']),
     (cus_enum.PageType.DRAW_AGAIN_TENTH,['再招募十次']),
-    (cus_enum.PageType.MAP_PAGE,['探索度']),
+    (cus_enum.PageType.MAP_PAGE,['启程篇章']),
     (cus_enum.PageType.GIFT_PAGE,['点击屏幕退出']),
     (cus_enum.PageType.PACK_PAGE,['全部']),
     (cus_enum.PageType.EDIT_PAGE,['编辑英雄']),
@@ -31,10 +31,10 @@ UI_TYPE_LIST = [
     (cus_enum.PageType.FIGHTING_PAGE,['fight_icon_2.png']),
     (cus_enum.PageType.OMIT_PAGE,['跳过']),
     (cus_enum.PageType.CLICK_GO_PAGE,['点击屏幕继续']),
-    (cus_enum.PageType.OTHER_PAGE,['点击空白处关闭']),
-    (cus_enum.PageType.OTHER_PAGE,['点击空自处关闭']),
     (cus_enum.PageType.NO_HERO_PAGE,['未拥有']),
-    (cus_enum.PageType.CONFIMR_PAGE,['confirm.png']),    
+    (cus_enum.PageType.CONFIMR_PAGE,['confirm_page_type.png']), 
+    (cus_enum.PageType.OTHER_PAGE,['点击空白处关闭']),
+    (cus_enum.PageType.OTHER_PAGE,['点击空自处关闭']),   
 ]
 
 READER = easyocr.Reader(['ch_sim','en'])
@@ -49,5 +49,6 @@ COMMON_ROUTE = [
     [cus_enum.PageType.GIFT_PAGE,['点击屏幕退出']],
     [cus_enum.PageType.OMIT_PAGE,['跳过']],
     [cus_enum.PageType.CLICK_GO_PAGE,['点击屏幕继续']],
-    [cus_enum.PageType.NO_HERO_PAGE,['确认']]
+    [cus_enum.PageType.NO_HERO_PAGE,['确认','确定']],
+    [cus_enum.PageType.CONFIMR_PAGE,['confirm.png']]
 ]
