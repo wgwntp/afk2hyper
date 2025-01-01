@@ -306,6 +306,7 @@ def clear_epic_wish_list(hwnd,target_epic_list,target_full_list,cards_map):
                 time.sleep(0.4)
     is_success = True
     return is_success
+
 def get_card_map(cart_path):
     # cardsMap [cardNumber=1-y,2-y,cardImage=[...]]
     cardsMap = []
@@ -378,7 +379,7 @@ def get_current_screen_cards_m(image,cards_map,w,h,w_radio,h_radio):
     
 def change_wish_list_for_max_cards(hwnd,cards_map,full_back_up_wish_list,epic_back_up_wish_list):
     # 识别当前英雄
-     #截图
+    #截图
     imagePath,w,h,_,_ = utils.window_screenshot(hwnd)
     image = cv2.imread(imagePath)
     #识别图片内容
@@ -404,12 +405,10 @@ def change_wish_list_for_max_cards(hwnd,cards_map,full_back_up_wish_list,epic_ba
     for ocr in ocr_result:
         if ocr[1] == '耀光帝国' or ocr[1] == '蛮血部落' or ocr[1] == '绿裔联盟' or ocr[1] == '亡灵眷族':
             # 全英雄心愿单调整
-            print("1")
             wish_list_type = 1
             break
         elif ocr[1] == '自选英雄':
             # 史诗英雄心愿单调整
-            print("2")
             wish_list_type = 2
             break
     

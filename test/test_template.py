@@ -18,8 +18,8 @@ def get_card_map(cart_path):
     return cardsMap
 
 if __name__ == "__main__":
-    image = cv2.imread('./template_img/6l.png')
-    temp_image = cv2.imread('./template_img/6-l.png')
+    image = cv2.imread('./template_img/fighting.png')
+    temp_image = cv2.imread('./template_img/game2.png')
     _,w,h = image.shape[::-1]
     # 0.095,0.057
     calW = int(w * 0.095)
@@ -35,7 +35,7 @@ if __name__ == "__main__":
     # cv2.waitKey(0)
     # cv2.destroyAllWindows()
     # print(max_val)
-    cards_map = get_card_map('../images/cards/gold/')
+    cards_map = [temp_image]
     for cm in cards_map:
         resized_img = cv2.resize(cm[1], (calW, calH), interpolation=cv2.INTER_AREA)
         # 创建 SIFT 或 ORB 检测器
